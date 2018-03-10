@@ -10,9 +10,10 @@ def test():
     Loader.show(image)
 
     pcloud = PointCloud(image)
-    pcloud.transform(scale=1.0, rotation=math.pi/4, translation=[200,200])
-    img = pcloud.resample()
-
+    pcloud.transform(scale=1.0, rotation=math.pi/2, translation=[200,0])
+    #img = pcloud.resample()
+    img = pcloud.sample([200,200])
+        
     plt.imshow(img, cmap='gray')
     plt.show()
 
