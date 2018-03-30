@@ -8,7 +8,7 @@ from transform import Transform
 from sample import Sample
 
 def transform_test():
-    image = Loader.load('smile.jpg')
+    image = Loader.load('images\smile.jpg')
     Loader.show(image) 
     transform = Transform(scale = 0.8, rotation=math.pi / 2, translation=[0.1, 0.2 ])
     img = Sample.sample(image, transform)    
@@ -18,7 +18,7 @@ def transform_test():
 
 def image_augment_test():
     aug = Augmentor()
-    imgs = aug.run('smile.jpg', 100)
+    imgs = aug.run('images', 10)
 
     plt.ion()
     for img in imgs:

@@ -1,6 +1,7 @@
 
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
+import os
 
 class Loader:
     def __init__(self):

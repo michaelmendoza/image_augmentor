@@ -1,4 +1,5 @@
 
+import os
 import math
 import numpy as np
 from tqdm import trange, tqdm
@@ -14,17 +15,22 @@ class Augmentor:
 
     def run(self, filepath, count):
         
-        image = Loader.load('smile.jpg')        
-        imgs = []
+        print('Loading image files ... ')
+        files = os.listdir(filepath)
+        data = []
+        for file in tqdm(files):
+            data.append(Loader.load(filepath + "\\" + file))
 
+        print('Augmenting image set ... ')
+        aug_images = []
         for _ in tqdm(range(count)):
-            #print(_)
-            options = self.options 
-            scale = np.random.rand() * (options.scale[1] - options.scale[0]) + options.scale[0]
-            rotate = np.random.rand() * (options.rotate[1] - options.rotate[0]) + options.rotate[0]
-            tx = np.random.rand() * (options.tx[1] - options.tx[0]) + options.tx[0]
-            ty = np.random.rand() * (options.ty[1] - options.ty[0]) + options.ty[0]
-            transform = Transform(scale = scale, rotation = rotate, translation = [tx, ty])
-            imgs.append(Sample.sample(image, transform) )
+            for image in data:
+                options = self.options 
+                scale = np.random.rand() * (options.scale[1] - options.scale[0]) + options.scale[0]
+                rotate = np.random.rand() * (options.rotate[1] - options.rotate[0]) + options.rotate[0]
+                tx = np.random.rand() * (options.tx[1] - options.tx[0]) + options.tx[0]
+                ty = np.random.rand() * (options.ty[1] - options.ty[0]) + options.ty[0]
+                transform = Transform(scale = scale, rotation = rotate, translation = [tx, ty])
+                aug_images.append(Sample.sample(image, transform) )
 
-        return imgs
+        return aug_images
