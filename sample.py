@@ -12,15 +12,17 @@ class Sample:
 
     def sample(self, image, transform = None, Nx = 200, Ny= 200):
         
+        ''' Sample grid in transformed space '''
         sample_points = [Point(x = c, y = r, bounding_box = (Ny, Nx)) for r in range(Nx) for c in range(Ny)]
+        ''' Inverse transform into image space and get sample points '''
         original_points = transform.inverse_transform (sample_points)
 
+        ''' Interpolate sample points to generate transformed image '''
         img = np.zeros([Nx, Ny])
         for i in range(Nx * Ny):
             point = original_points[i]
-            point.value = self.interpolate(image, point)
-            img[i % Nx, math.floor(i / Nx)] = point.value 
-
+            img[i % Nx, math.floor(i / Nx)] = self.interpolate(image, point)
+            
         return img;
 
     def interpolate(self, image, point):
@@ -52,7 +54,7 @@ class Sample:
         col_floor_index = 0 if col_floor < 0 else col_floor_index
         col_ceil_index = 0 if col_ceil < 0 else col_ceil_index
 
-        ''' Interpolate '''
+        ''' Bilinear Interpolate '''
         val = ((orig_row - row_floor) * (orig_col - col_floor) * image[row_ceil_index, col_ceil_index]) + \
                 ((row_ceil - orig_row) * (orig_col - col_floor) * image[row_floor_index, col_ceil_index]) + \
                 ((orig_row - row_floor) * (col_ceil - orig_col) * image[row_ceil_index, col_floor_index]) + \
