@@ -9,7 +9,7 @@ from sample import Sample
 def test():
     image = Loader.load('smile.jpg')
     Loader.show(image)
-    transform = Transform(rotation=math.pi / 2)
+    transform = Transform(scale = 0.5, rotation=math.pi / 2)
     img = Sample.sample(image, transform)    
     plt.imshow(img, cmap='gray')
     plt.show()

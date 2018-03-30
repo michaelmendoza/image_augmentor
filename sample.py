@@ -43,10 +43,14 @@ class Sample:
         col_floor = int(math.floor(orig_col))
 
         ''' Handle boundaries '''
+        row_floor_index = Ny - 1 if row_floor >= Ny else row_floor
         row_ceil_index = Ny - 1 if row_ceil >= Ny else row_ceil
+        col_floor_index = Nx - 1 if col_floor >= Nx else col_floor
         col_ceil_index = Nx - 1 if col_ceil >= Nx else col_ceil
-        row_floor_index = 0 if row_floor < 0 else row_floor   
-        col_floor_index = 0 if col_floor < 0 else col_floor
+        row_floor_index = 0 if row_floor < 0 else row_floor_index
+        row_ceil_index = 0 if row_ceil < 0 else row_ceil_index   
+        col_floor_index = 0 if col_floor < 0 else col_floor_index
+        col_ceil_index = 0 if col_ceil < 0 else col_ceil_index
 
         ''' Interpolate '''
         val = ((orig_row - row_floor) * (orig_col - col_floor) * image[row_ceil_index, col_ceil_index]) + \
