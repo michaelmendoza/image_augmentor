@@ -1,8 +1,9 @@
 
 import numpy as np
 from math import cos, sin
+from point import Point
 
-class AffineTransform():
+class Transform:
 
     def __init__(self, scale=1.0, rotation=0.0, translation=[0,0]):
         ''' Initalize affine transformation matrix (H) '''
@@ -14,29 +15,22 @@ class AffineTransform():
              [s*sin(r), s*cos(r),  ty],
              [0.0,        0.0,    1.0]]
         self.H = np.array(H)
-
-    def set_matrix(self, H):
-        self.H = H
+        self.Hinv = np.linalg.inv(self.H)
 
     def transform(self, points):
         ''' Transform points with affine transformation '''
         new_points = []
         for point in points:
-            u = np.array([point[0], point[1], 1]) # Set to homogeneous coordinates
-            x = np.dot(self.H, u) # Apply transformation
-            x[2] = point[2] # Format data to point [x, y, value]
-            new_points.append(x.tolist())
+            u = np.array([point[0], point[1], 1])       # Set to homogeneous coordinates
+            x = np.dot(self.H, u)                       # Apply transformation
+            new_points.append(Point(x=x[0], y=x[1]))
         return new_points
 
     def inverse_transform(self, points):
         ''' Transform points with inverse affine transformation '''
         new_points = []
-        Hinv = np.linalg.inv(self.H)
         for point in points:
-            u = np.array([point[0], point[1], 1]) # Set to homogeneous coordinates
-            x = np.dot(Hinv, u) # Apply transformation
-            x[2] = point[2] # Format data to point [x, y, value]
-            new_points.append(x.tolist())
+            u = np.array([point.x, point.y, 1])          # Set to homogeneous coordinates
+            x = np.dot(self.Hinv, u)                     # Apply transformation
+            new_points.append(Point(x=x[0], y=x[1]))
         return new_points 
-
-    
