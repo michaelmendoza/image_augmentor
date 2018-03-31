@@ -1,13 +1,15 @@
 
+from __future__ import absolute_import, division, print_function
+
 import os
 import math
 import numpy as np
 from tqdm import trange, tqdm
 
-from options import AugmentOptions
-from loader import Loader
-from transform import Transform
-from sample import Sample
+from .options import AugmentOptions
+from .loader import Loader
+from .transform import Transform
+from .sample import Sample
 
 class Augmentor:
     def __init__(self):

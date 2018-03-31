@@ -6,7 +6,7 @@ import numpy as np
 import time
 import math
 
-from point import Point
+from .point import Point
 
 class Sample:
 

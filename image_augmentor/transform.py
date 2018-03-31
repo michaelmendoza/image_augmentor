@@ -1,7 +1,10 @@
 
+from __future__ import absolute_import, division, print_function
+
 import numpy as np
+
 from math import cos, sin
-from point import Point
+from .point import Point
 
 class Transform:
     ''' Simple implementation for a affine transformation with scaling, rotation and translation '''

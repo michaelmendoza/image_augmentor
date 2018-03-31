@@ -1,4 +1,6 @@
 
+from __future__ import absolute_import, division, print_function
+
 class Point:
 
     def __init__(self, value = None, x = None, y = None, bounding_box = None):

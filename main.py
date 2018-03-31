@@ -1,11 +1,13 @@
 
+from __future__ import absolute_import, division, print_function
+
 import matplotlib.pyplot as plt
 import math
 
-from augmentor import Augmentor
-from loader import Loader
-from transform import Transform
-from sample import Sample
+from image_augmentor.augmentor import Augmentor
+from image_augmentor.loader import Loader
+from image_augmentor.transform import Transform
+from image_augmentor.sample import Sample
 
 def transform_test():
     image = Loader.load('images\smile.jpg')
