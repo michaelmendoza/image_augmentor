@@ -3,13 +3,14 @@ from setuptools import find_packages
 
 setup(
     name='image_augmentor',
-    version='0.1.0',
+    packages = ['image_augmentor'],
+    version='0.1.2',
     author='Michael Mendoza',
     author_email='iammichaelmendoza@gmail.com',
     scripts=[],
     url='https://github.com/michaelmendoza/image_augmentor',
     license='GPL',
-    description='Augments an image set with randomly generated transformed images to increase the size of image dataset',
+    description='An image augmentation library for machine learning',
     long_description=open('README.rst').read(),
     install_requires=[
         "numpy==1.14.1",
