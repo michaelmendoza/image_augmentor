@@ -4,7 +4,7 @@ from setuptools import find_packages
 setup(
     name='image_augmentor',
     packages = ['image_augmentor'],
-    version='0.1.0',
+    version='0.1.4',
     author='Michael Mendoza',
     author_email='iammichaelmendoza@gmail.com',
     scripts=[],

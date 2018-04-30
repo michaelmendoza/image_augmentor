@@ -21,7 +21,8 @@ class Augmentor:
         files = os.listdir(filepath)
         data = []
         for file in tqdm(files):
-            data.append(Loader.load(filepath + "\\" + file))
+            _file = os.path.join(filepath, file)
+            data.append(Loader.load(_file))
 
         print('Augmenting image set ... ')
         aug_images = []

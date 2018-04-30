@@ -9,8 +9,8 @@ from .loader import Loader
 from .transform import Transform
 from .sample import Sample
 
-def transform_test():
-    image = Loader.load('images\smile.jpg')
+def transform_test(filename):
+    image = Loader.load(filename)
     Loader.show(image) 
     transform = Transform(scale = 0.8, rotation=math.pi / 2, translation=[0.1, 0.2 ])
     img = Sample.sample(image, transform)    
@@ -18,9 +18,9 @@ def transform_test():
     plt.imshow(img, cmap='gray')
     plt.show()
 
-def image_augment_test():
+def image_augment_test(foldername):
     aug = Augmentor()
-    imgs = aug.run('images', 10)
+    imgs = aug.run(foldername, 10)
 
     plt.ion()
     for img in imgs:
