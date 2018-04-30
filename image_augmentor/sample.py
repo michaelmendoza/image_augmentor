@@ -21,7 +21,7 @@ class Sample:
         img = np.zeros([Nx, Ny])
         for i in range(Nx * Ny):
             point = original_points[i]
-            img[i % Nx, math.floor(i / Nx)] = self.interpolate(image, point)
+            img[i % Nx, int(math.floor(i / Nx))] = self.interpolate(image, point)
             
         return img;
 
