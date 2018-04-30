@@ -17,6 +17,3 @@ You can install the library with `pip`:
 You can clone the repo and get this library running like this:
 
   git clone https://github.com/michaelmendoza/image_augmentor.git
-  cd image_augmentor
- 
-
