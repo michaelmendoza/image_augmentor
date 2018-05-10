@@ -3,6 +3,9 @@ import math
 
 class AugmentOptions:
     def __init__(self):
+        ''' Interations of image augmentation '''
+        self.interations = 10
+
         ''' Probabilty of transformation'''
         self.pScale = 0.5
         self.pRotate = 0.5

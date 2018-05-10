@@ -9,6 +9,27 @@ from .loader import Loader
 from .transform import Transform
 from .sample import Sample
 
+def image_augment_test(foldername):
+    aug = Augmentor()
+    imgs = aug.run(foldername)
+
+    plt.ion()
+    for img in imgs:
+        plt.imshow(img, cmap='gray')
+        plt.pause(0.05)
+
+def image_array_augment_test(foldername):
+
+    image_array = Loader.loadFolder2(foldername)
+
+    aug = Augmentor()
+    imgs = aug.run(image_array)
+
+    plt.ion()
+    for img in imgs:
+        plt.imshow(img, cmap='gray')
+        plt.pause(0.05)
+
 def transform_test(filename):
     image = Loader.load(filename)
     Loader.show(image) 
@@ -18,15 +39,7 @@ def transform_test(filename):
     plt.imshow(img, cmap='gray')
     plt.show()
 
-def image_augment_test(foldername):
-    aug = Augmentor()
-    imgs = aug.run(foldername, 10)
-
-    plt.ion()
-    for img in imgs:
-        plt.imshow(img, cmap='gray')
-        plt.pause(0.05)
-
 if __name__ == '__main__':
-    image_augment_test()
+    #image_augment_test()
+    image_array_augment_test()
     #transform_test()

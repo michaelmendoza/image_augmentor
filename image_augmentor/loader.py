@@ -1,6 +1,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+import numpy as np
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import os
@@ -26,6 +27,21 @@ class Loader:
         for file in tqdm(files):
             _file = os.path.join(foldername, file)
             data.append(Loader.load(_file))
+        return data
+
+    def loadFolder2(self, foldername):
+        files = os.listdir(foldername)
+        data = None
+
+        for file in tqdm(files):
+            _file = os.path.join(foldername, file)
+            _data = Loader.load(_file)
+
+            if not hasattr(data, 'shape'):
+                data = np.expand_dims(_data, axis=0)
+            else:
+                data = np.concatenate( (data, _data[None,:]), axis=0)
+
         return data
 
     def show(self, image):
