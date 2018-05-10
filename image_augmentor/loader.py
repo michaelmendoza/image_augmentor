@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import os
+from tqdm import trange, tqdm
 
 class Loader:
     def __init__(self):
@@ -18,6 +19,14 @@ class Loader:
         image = mpimg.imread(filename)
         image = self.rgb2grey(image)
         return image;
+
+    def loadFolder(self, foldername):
+        files = os.listdir(foldername)
+        data = []
+        for file in tqdm(files):
+            _file = os.path.join(foldername, file)
+            data.append(Loader.load(_file))
+        return data
 
     def show(self, image):
         plt.imshow(image, cmap='gray')

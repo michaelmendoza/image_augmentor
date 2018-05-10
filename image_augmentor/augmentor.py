@@ -18,11 +18,7 @@ class Augmentor:
     def run(self, filepath, count):
         
         print('Loading image files ... ')
-        files = os.listdir(filepath)
-        data = []
-        for file in tqdm(files):
-            _file = os.path.join(filepath, file)
-            data.append(Loader.load(_file))
+        data = Loader.loadFolder(filepath)
 
         print('Augmenting image set ... ')
         aug_images = []
@@ -37,3 +33,8 @@ class Augmentor:
                 aug_images.append(Sample.sample(image, transform) )
 
         return aug_images
+
+
+    def run_with_array(self, data, count):
+    	pass
+
