@@ -13,7 +13,7 @@ setup(
     description='An image augmentation library for machine learning',
     long_description=open('README.rst').read(),
     install_requires=[
-        "numpy==1.14.1",
+        "numpy==1.22.0",
         "scipy==1.0.0",
         "matplotlib==2.2.2",
         "tqdm==4.19.9"
